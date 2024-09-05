@@ -7,5 +7,6 @@ export const WarpperTypeProduct = styled.div`
     align-items: center;
     gap: 24px;
     justify-content: flex-start;
-    border-bottom: 1px solid #ddd
+    border-bottom: 1px solid #ddd;
+    height: 44px;
 `
