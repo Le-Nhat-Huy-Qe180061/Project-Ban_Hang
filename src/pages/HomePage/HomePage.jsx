@@ -9,6 +9,7 @@ import slider3 from "../../assets/images/slider3.webp";
 import CartComponent from "../../components/CartComponent/CartComponent";
 
 import './HomePage.scss'
+import NavbarComponent from "../../components/NavbarComponent/NavbarComponent";
 
 const HomePage = () => {
     const arr = ['TV', 'Tu Lanh', 'Lap top']
@@ -22,11 +23,12 @@ const HomePage = () => {
                         )
                     })}
                 </WarpperTypeProduct>
-                <div id="container" style={{ background: '#efefef'}}>
+                <div id="container" style={{ background: '#efefef', padding: '0 120px', height:'1000px'}}>
                     <SliderComponent arrImage={[slider1, slider2, slider3]} />
-                </div>
-                <div className="card-product">
-                    <CartComponent />
+                    <div className="card-product">
+                        <CartComponent />
+                    </div>
+                    <NavbarComponent />
                 </div>
             </div>
         </>
