@@ -73,18 +73,7 @@ const NavbarComponent = () => {
             <WarpperContent>
                 {renderContent('text', ['TV', 'Laptop', 'Iphone'])}
             </WarpperContent>
-            <WarpperContent>
-                {renderContent('checkbox', [
-                    { value: 'a', label: 'A' },
-                    { value: 'b', label: 'B' },
-                ])}
-            </WarpperContent>
-            <WarpperContent>
-                {renderContent('star', [3, 4, 5])}
-            </WarpperContent>
-            <WarpperContent>
-                {renderContent('price', ['duoi 40', 'tren 50.000'])}
-            </WarpperContent>
+          
         </div>
     )
 }

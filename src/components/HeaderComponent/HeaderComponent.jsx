@@ -5,7 +5,7 @@ import {
     WrapperTextHeaderSmall,
 } from "./style";
 import "./HeaderComponent.scss";
-import { Col } from "antd";
+import { Badge, Col } from "antd";
 import {
     UserOutlined,
     CaretDownOutlined,
@@ -44,9 +44,11 @@ const HeaderComponent = () => {
                     </WrapperHeaderAccout>
 
                     <div className="header-right__cart">
-                        <ShoppingCartOutlined
-                            style={{ fontSize: "30px", color: "white" }}
-                        />
+                        <Badge count={4}>
+                            <ShoppingCartOutlined
+                                style={{ fontSize: "30px", color: "white" }}
+                            />
+                        </Badge>
                         <WrapperTextHeaderSmall className="header-right__cart--text">
                             Giỏ hàng
                         </WrapperTextHeaderSmall>
