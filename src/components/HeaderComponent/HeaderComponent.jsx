@@ -17,12 +17,12 @@ import ButtonInputSearch from "../ButtonInputSearch/ButtonInputSearch";
 
 const HeaderComponent = () => {
     return (
-        <>
-            <WrapperHeader gutter={[10, 20]}>
-                <Col span={6}>
+        <div style={{width: '100%', background: 'rgb(26, 148, 255)', display:'flex', justifyContent:'center'}}>
+            <WrapperHeader >
+                <Col span={5}>
                     <WrapperTextHeader>NhatHuyDev</WrapperTextHeader>
                 </Col>
-                <Col span={12} className="header-center">
+                <Col span={13} className="header-center">
                     <ButtonInputSearch
                         size='large'
                         textButton='Tìm kiếm'
@@ -31,7 +31,7 @@ const HeaderComponent = () => {
                 </Col>
                 <Col span={6} className="header-right">
                     <WrapperHeaderAccout>
-                        <UserOutlined style={{ fontSize: "30px", gap: "20px" }} />
+                        <UserOutlined style={{ fontSize: "30px"}} />
                         <div>
                             <WrapperTextHeaderSmall>
                                 Đăng nhập / Đăng ký
@@ -55,7 +55,7 @@ const HeaderComponent = () => {
                     </div>
                 </Col>
             </WrapperHeader>
-        </>
+        </div>
     );
 };
 

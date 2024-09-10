@@ -16,7 +16,7 @@ const HomePage = () => {
     const arr = ['TV', 'Tu Lanh', 'Lap top']
     return (
         <>
-            <div style={{ padding: '0 120px' }}>
+            <div style={{ width: '1270px', margin: '0 auto' }}>
                 <WarpperTypeProduct>
                     {arr.map((item, _) => {
                         return (
@@ -24,23 +24,25 @@ const HomePage = () => {
                         )
                     })}
                 </WarpperTypeProduct>
-                <div id="container" style={{ background: '#efefef', padding: '0 120px', height: '1000px', width: '100%' }}>
-                    <SliderComponent arrImage={[slider1, slider2, slider3]} />
-                    <WarrperProducts>
-                        <CartComponent />
-                        <CartComponent />
-                        <CartComponent />
-                        <CartComponent />
-                        <CartComponent />
-                        <CartComponent />
-                    </WarrperProducts>
-                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
-                        <WarpperButtonMore textButton="Xem thêm" type='outline' styleButton={{
-                            border: '1px solid rgb(11, 116, 229)', color: 'rgb(11, 116, 229)',
-                            width: '240px', height: '38px', borderRadius: '4px'
-                        }} styleTextButton={{ fontWeight: 500 }} />
+                <div className="body" style={{width: '100%', background: '#efefef' }}>
+                    <div id="container" style={{height: '1000px', width: '1270px', margin: '0 auto' }}>
+                        <SliderComponent arrImage={[slider1, slider2, slider3]} />
+                        <WarrperProducts>
+                            <CartComponent />
+                            <CartComponent />
+                            <CartComponent />
+                            <CartComponent />
+                            <CartComponent />
+                            <CartComponent />
+                        </WarrperProducts>
+                        <div style={{ width: '100%', display: 'flex', justifyContent: 'center', marginTop: '10px' }}>
+                            <WarpperButtonMore textButton="Xem thêm" type='outline' styleButton={{
+                                border: '1px solid rgb(11, 116, 229)', color: 'rgb(11, 116, 229)',
+                                width: '240px', height: '38px', borderRadius: '4px'
+                            }} styleTextButton={{ fontWeight: 500 }} />
+                        </div>
+                        {/* <NavbarComponent /> */}
                     </div>
-                    {/* <NavbarComponent /> */}
                 </div>
             </div>
         </>

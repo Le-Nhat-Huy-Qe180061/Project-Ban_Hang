@@ -8,7 +8,6 @@ export const WarpperTypeProduct = styled.div`
     align-items: center;
     gap: 24px;
     justify-content: flex-start;
-    border-bottom: 1px solid #ddd;
     height: 44px;
 `
 
@@ -23,8 +22,8 @@ export const WarpperButtonMore = styled(ButtonComponent)`
 
 export const WarrperProducts = styled.div` 
     display: flex;
-    justify-content: center;
-    gap: 15px;
+   
+    gap: 14px;
     margin-top: 20px;
     flex-warp: warp;
 `

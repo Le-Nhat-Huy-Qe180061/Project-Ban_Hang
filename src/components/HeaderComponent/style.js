@@ -4,10 +4,12 @@ import styled from 'styled-components';
 
 
 export const WrapperHeader = styled(Row)`
-    padding: 10px 120px;
+    padding: 10px 0px;
     background-color: rgb(26, 148, 255);
-    display: flex;
+    gap: 16px;
     align-items: center;
+    flex-wrap:nowrap;
+    width: 1270px;
 `
 
 export const WrapperTextHeader = styled.span`

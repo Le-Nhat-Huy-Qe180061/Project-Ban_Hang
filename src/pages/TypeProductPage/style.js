@@ -3,10 +3,9 @@ import styled from "styled-components";
 
 export const WarrperProducts = styled.div`
   display: flex;
-  justify-content: center;
-  gap: 15px;
+  gap: 12px;
   margin-top: 20px;
-  flex-warp: warp;
+  flex-wrap: wrap;
 `
 
 export const WarrperNavbar = styled(Col)`
@@ -15,5 +14,6 @@ export const WarrperNavbar = styled(Col)`
      padding: 10px;
      border-radius: 6px;
      height: fit-content;
-     margin-top: 20px
+     margin-top: 20px;
+     width: 200px;
 `
