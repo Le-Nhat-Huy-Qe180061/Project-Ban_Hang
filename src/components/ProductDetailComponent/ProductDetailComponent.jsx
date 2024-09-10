@@ -72,6 +72,7 @@ const ProductDetailComponent = () => {
 
                     >              
                     </ButtonComponent>
+                    
                     <ButtonComponent
                     bordered={false}
                     size={20}
