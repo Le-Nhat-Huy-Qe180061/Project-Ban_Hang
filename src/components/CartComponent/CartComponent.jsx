@@ -1,7 +1,6 @@
 
 import React from 'react';
-import { Card, Badge, Space } from 'antd';
-import { StyleNameProduct, WarpperCardStyle, WrapperDiscountText, WrapperImageStyle, WrapperPriceText, WrapperReportText } from './style';
+import { StyleNameProduct, WarpperCardStyle, WrapperDiscountText,  WrapperPriceText, WrapperReportText, WarrperStyleTextSell } from './style';
 import { StarOutlined } from '@ant-design/icons';
 
 const CartComponent = () => {
@@ -22,7 +21,7 @@ const CartComponent = () => {
                     <span>
                         <span>4.96</span> <StarOutlined style={{ fontSize: '15px', color: 'yellow' }} />
                     </span>
-                    <span>| Đã bán 1000+</span>
+                    <WarrperStyleTextSell>| Đã bán 1000+</WarrperStyleTextSell>
                 </WrapperReportText>
                 <WrapperPriceText>
                     1.000.000đ

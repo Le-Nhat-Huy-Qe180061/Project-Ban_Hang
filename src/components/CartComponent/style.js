@@ -37,6 +37,12 @@ export const WarpperCardStyle = styled(Card)`
     }
 `
 
+export const WarrperStyleTextSell = styled.span`
+    font-size: 15px;
+    line-height: 24px;
+    color: rgb(120, 120, 120)
+`
+
 // export const WrapperImageStyle = styled.img`
 //     top: -1px;
 //     left: -1px;
