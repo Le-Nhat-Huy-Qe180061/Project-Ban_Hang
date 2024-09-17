@@ -26,7 +26,7 @@ const HeaderComponent = () => {
                     <ButtonInputSearch
                         size='large'
                         textButton='Tìm kiếm'
-                        placeholder='Input search text'
+                        placeholder='Con cac'
                     />
                 </Col>
                 <Col span={6} className="header-right">
