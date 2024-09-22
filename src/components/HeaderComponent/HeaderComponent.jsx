@@ -4,6 +4,7 @@ import {
     WrapperTextHeader,
     WrapperTextHeaderSmall,
 } from "./style";
+import {useNavigate} from "react-router-dom";
 import "./HeaderComponent.scss";
 import { Badge, Col } from "antd";
 import {
@@ -16,6 +17,13 @@ import ButtonInputSearch from "../ButtonInputSearch/ButtonInputSearch";
 
 
 const HeaderComponent = () => {
+
+    const navigate = useNavigate();
+    const handleNavigateLogin = () => {
+        navigate('/sign-in');
+    }
+
+
     return (
         <div style={{width: '100%', background: 'rgb(26, 148, 255)', display:'flex', justifyContent:'center'}}>
             <WrapperHeader >
@@ -26,13 +34,13 @@ const HeaderComponent = () => {
                     <ButtonInputSearch
                         size='large'
                         textButton='Tìm kiếm'
-                        placeholder='Con cac'
+                        placeholder='Index'
                     />
                 </Col>
                 <Col span={6} className="header-right">
                     <WrapperHeaderAccout>
                         <UserOutlined style={{ fontSize: "30px"}} />
-                        <div>
+                        <div onClick={handleNavigateLogin} style={{cursor: 'pointer'}}>
                             <WrapperTextHeaderSmall>
                                 Đăng nhập / Đăng ký
                             </WrapperTextHeaderSmall>
