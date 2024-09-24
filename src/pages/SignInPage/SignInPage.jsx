@@ -4,18 +4,14 @@ import { Image } from 'antd'
 import { EyeFilled, EyeInvisibleFilled } from '@ant-design/icons'
 import InputForm from '../../components/InputForm/InputForm'
 import ButtonComponent from '../../components/ButtonComponent/ButtonComponent'
-import imageLogo from '../../assets/images/logo-login.png';
+import imageLogo from '../../assets/images/logo-login.png'
 import { useNavigate } from 'react-router-dom'
 
 const SignInPage = () => {
-
   const [isShowPassword, setIsShowPassword] = useState(false);
-
   const [email, setEmail] = useState("");
-
-  const [password, setPassword] = useState(' ');
-
-
+  const [password, setPassword] = useState('');
+  
   const navigate = useNavigate();
 
   const handleNavigateSignUp = () => {
@@ -25,6 +21,7 @@ const SignInPage = () => {
   const handleOnChangeEmail = (value) => {
     setEmail(value);
   }
+
   const handleOnChangePassword = (value) => {
     setPassword(value);
   }
@@ -39,9 +36,14 @@ const SignInPage = () => {
         <WrapperContainerLeft>
           <h1>Hello</h1>
           <p>Login or create account</p>
-
-          <InputForm style={{ marginBottom: '10px' }} placeholder="abc@gmail.com" onChange={handleOnChangeEmail} value={email} />
-
+          
+          <InputForm 
+            style={{ marginBottom: '10px' }} 
+            placeholder="abc@gmail.com" 
+            value={email} 
+            onChange={handleOnChangeEmail}
+          />
+          
           <div style={{ position: 'relative' }}>
             <span
               onClick={() => setIsShowPassword(!isShowPassword)}
@@ -53,7 +55,7 @@ const SignInPage = () => {
               }}>
               {isShowPassword ? (<EyeFilled />) : (<EyeInvisibleFilled />)}
             </span>
-
+            
             <InputForm
               onChange={handleOnChangePassword}
               value={password}
@@ -61,8 +63,9 @@ const SignInPage = () => {
               type={isShowPassword ? "text" : "password"}
             />
           </div>
+
           <ButtonComponent
-            // bordered={false}
+            bordered={false}
             onClick={handleSigIn}
             disabled={!email.length || !password.length}
             size={20}
@@ -76,8 +79,8 @@ const SignInPage = () => {
             }}
             textButton={'Login'}
             styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
-          >
-          </ButtonComponent>
+          />
+
           <p><WrapperTextlight>Forget password ?</WrapperTextlight></p>
           <p>you have account ? <WrapperTextlight onClick={handleNavigateSignUp}>Create account</WrapperTextlight></p>
         </WrapperContainerLeft>
