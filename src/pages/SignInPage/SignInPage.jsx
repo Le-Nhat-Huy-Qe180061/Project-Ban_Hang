@@ -7,12 +7,23 @@ import ButtonComponent from '../../components/ButtonComponent/ButtonComponent'
 import imageLogo from '../../assets/images/logo-login.png'
 import { useNavigate } from 'react-router-dom'
 
+
+import * as UserService from '../../services/user.service.js';
+import { useMutationHooks } from '../../hooks/useMutationHook.js'
+import Loading from '../../components/LoadingComponent/Loading.jsx'
+
 const SignInPage = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState('');
-  
+
   const navigate = useNavigate();
+
+  const mutation = useMutationHooks(data => UserService.loginUser(data))
+
+  console.log('mutation:', mutation);
+
+  const { data, isPending } = mutation;
 
   const handleNavigateSignUp = () => {
     navigate('/sign-up');
@@ -27,6 +38,10 @@ const SignInPage = () => {
   }
 
   const handleSigIn = () => {
+    mutation.mutate({
+      email,
+      password
+    })
     console.log(email, password);
   }
 
@@ -36,14 +51,14 @@ const SignInPage = () => {
         <WrapperContainerLeft>
           <h1>Hello</h1>
           <p>Login or create account</p>
-          
-          <InputForm 
-            style={{ marginBottom: '10px' }} 
-            placeholder="abc@gmail.com" 
-            value={email} 
+
+          <InputForm
+            style={{ marginBottom: '10px' }}
+            placeholder="abc@gmail.com"
+            value={email}
             onChange={handleOnChangeEmail}
           />
-          
+
           <div style={{ position: 'relative' }}>
             <span
               onClick={() => setIsShowPassword(!isShowPassword)}
@@ -55,7 +70,7 @@ const SignInPage = () => {
               }}>
               {isShowPassword ? (<EyeFilled />) : (<EyeInvisibleFilled />)}
             </span>
-            
+
             <InputForm
               onChange={handleOnChangePassword}
               value={password}
@@ -64,22 +79,27 @@ const SignInPage = () => {
             />
           </div>
 
-          <ButtonComponent
-            bordered={false}
-            onClick={handleSigIn}
-            disabled={!email.length || !password.length}
-            size={20}
-            styleButton={{
-              background: 'rgb(255, 57, 69)',
-              height: '48px',
-              width: '410px',
-              border: 'none',
-              borderRadius: '4px',
-              margin: '26px 0 10px'
-            }}
-            textButton={'Login'}
-            styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
-          />
+          {data?.status === 'ERR' && <span style={{ color: 'red' }}>{data?.message}</span>}
+
+          <Loading isPending={isPending}>
+            <ButtonComponent
+              bordered={false}
+              onClick={handleSigIn}
+              disabled={!email.length || !password.length}
+              size={20}
+              styleButton={{
+                background: 'rgb(255, 57, 69)',
+                height: '48px',
+                width: '410px',
+                border: 'none',
+                borderRadius: '4px',
+                margin: '26px 0 10px'
+              }}
+              textButton={'Login'}
+              styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
+            >
+            </ButtonComponent>
+          </Loading>
 
           <p><WrapperTextlight>Forget password ?</WrapperTextlight></p>
           <p>you have account ? <WrapperTextlight onClick={handleNavigateSignUp}>Create account</WrapperTextlight></p>
