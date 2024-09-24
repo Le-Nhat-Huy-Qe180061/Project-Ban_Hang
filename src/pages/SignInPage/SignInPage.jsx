@@ -11,7 +11,7 @@ const SignInPage = () => {
 
   const [isShowPassword, setIsShowPassword] = useState(false);
 
-  const [email, setEmail] = useState(' ');
+  const [email, setEmail] = useState("");
 
   const [password, setPassword] = useState(' ');
 
@@ -39,7 +39,9 @@ const SignInPage = () => {
         <WrapperContainerLeft>
           <h1>Hello</h1>
           <p>Login or create account</p>
-          <InputForm style={{ marginBottom: '10px' }} placeholder="abc@gmail.com" value={email} onChange={handleOnChangeEmail} />
+
+          <InputForm style={{ marginBottom: '10px' }} placeholder="abc@gmail.com" onChange={handleOnChangeEmail} value={email} />
+
           <div style={{ position: 'relative' }}>
             <span
               onClick={() => setIsShowPassword(!isShowPassword)}
@@ -51,9 +53,10 @@ const SignInPage = () => {
               }}>
               {isShowPassword ? (<EyeFilled />) : (<EyeInvisibleFilled />)}
             </span>
+
             <InputForm
               onChange={handleOnChangePassword}
-              value = {password}
+              value={password}
               placeholder="password"
               type={isShowPassword ? "text" : "password"}
             />
