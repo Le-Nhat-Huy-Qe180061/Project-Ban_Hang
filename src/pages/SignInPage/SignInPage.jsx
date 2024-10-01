@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { WrapperContainerLeft, WrapperContainerRight, WrapperTextlight } from './style.js'
 import { Image } from 'antd'
 import { EyeFilled, EyeInvisibleFilled } from '@ant-design/icons'
@@ -6,24 +6,53 @@ import InputForm from '../../components/InputForm/InputForm'
 import ButtonComponent from '../../components/ButtonComponent/ButtonComponent'
 import imageLogo from '../../assets/images/logo-login.png'
 import { useNavigate } from 'react-router-dom'
-
-
 import * as UserService from '../../services/user.service.js';
 import { useMutationHooks } from '../../hooks/useMutationHook.js'
 import Loading from '../../components/LoadingComponent/Loading.jsx'
+import { jwtDecode } from "jwt-decode";
+import { useDispatch } from 'react-redux';
+import { updateUser } from '../../redux/slides/userSlide.js'
+import * as message from '../../components/Message/Message.jsx';
 
 const SignInPage = () => {
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const mutation = useMutationHooks(data => UserService.loginUser(data))
 
-  console.log('mutation:', mutation);
+  const { data, isPending, isSuccess, isError } = mutation;
 
-  const { data, isPending } = mutation;
+  useEffect(() => {
+    if (isSuccess) {
+      navigate('/');
+      localStorage.setItem('access_token', data?.access_token);
+      if (data?.access_token) {
+        const decoded = jwtDecode(data?.access_token);
+        if (decoded?.id) {
+          handleGetDetailsUser(decoded?.id, data?.access_token);
+        }
+      }
+    }
+  }, [isSuccess, data, navigate])
+
+  const handleGetDetailsUser = async (id, token) => {
+    try {
+      const res = await UserService.getDetailUser(id, token);
+      if (res?.data) {
+        dispatch(updateUser({ ...res.data, access_token: token }));
+      } else {
+        console.error('User data is undefined');
+        message.error('Failed to fetch user details');
+      }
+    } catch (error) {
+      console.error('Error fetching user details:', error);
+      message.error('An error occurred while fetching user details');
+    }
+  }
 
   const handleNavigateSignUp = () => {
     navigate('/sign-up');
@@ -42,7 +71,6 @@ const SignInPage = () => {
       email,
       password
     })
-    console.log(email, password);
   }
 
   return (
@@ -83,7 +111,6 @@ const SignInPage = () => {
 
           <Loading isPending={isPending}>
             <ButtonComponent
-              bordered={false}
               onClick={handleSigIn}
               disabled={!email.length || !password.length}
               size={20}
@@ -97,8 +124,7 @@ const SignInPage = () => {
               }}
               textButton={'Login'}
               styleTextButton={{ color: '#fff', fontSize: '15px', fontWeight: '700' }}
-            >
-            </ButtonComponent>
+            />
           </Loading>
 
           <p><WrapperTextlight>Forget password ?</WrapperTextlight></p>

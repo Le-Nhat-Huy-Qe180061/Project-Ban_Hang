@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { WrapperContainerLeft, WrapperContainerRight, WrapperTextlight } from './style'
 import { Image } from 'antd'
 import { EyeFilled, EyeInvisibleFilled } from '@ant-design/icons'
@@ -10,6 +10,9 @@ import { useNavigate } from 'react-router-dom'
 import * as UserService from '../../services/user.service.js';
 import { useMutationHooks } from '../../hooks/useMutationHook.js'
 import Loading from '../../components/LoadingComponent/Loading.jsx'
+
+
+import * as message from '../../components/Message/Message.jsx';
 
 
 const SignUpPage = () => {
@@ -27,9 +30,19 @@ const SignUpPage = () => {
 
   const mutation = useMutationHooks(data => UserService.createUser(data));
 
-  const { data, isPending } = mutation;
+  const { data, isPending, isSuccess, isError } = mutation;
 
-  const handleNavigateSignUp = () => {
+  useEffect(() => {
+    if (isSuccess) {
+      message.success();
+      handleNavigateSignIn();
+    } else if (isError) {
+      message.error();
+    }
+
+  }, [isSuccess, isError])
+
+  const handleNavigateSignIn = () => {
     navigate('/sign-in');
   }
 
@@ -105,7 +118,6 @@ const SignUpPage = () => {
           {data?.status === 'ERR' && <span style={{ color: 'red' }}>{data?.message}</span>}
           <Loading isPending={isPending}>
             <ButtonComponent
-              // bordered={false}
               disabled={!email.length || !password.length || !confirmPassword}
               onClick={handleSignUp}
               size={20}
@@ -122,7 +134,7 @@ const SignUpPage = () => {
             >
             </ButtonComponent>
           </Loading>
-          <p>You have account ? <WrapperTextlight onClick={handleNavigateSignUp} style={{ cursor: 'pointer' }}>Login</WrapperTextlight></p>
+          <p>You have account ? <WrapperTextlight onClick={handleNavigateSignIn} style={{ cursor: 'pointer' }}>Login</WrapperTextlight></p>
         </WrapperContainerLeft>
         <WrapperContainerRight>
           <Image src={imageLogo} alt='Logo' preview={false} height='203px' width='203px' />
