@@ -21,7 +21,7 @@ export const WrapperTextHeader = styled.span`
 
 export const WrapperHeaderAccout = styled.div`
     display:flex;
-    align-item: center;
+    align-items: center;
     color: white;
     gap: 10px;
     margin-left: 15px;

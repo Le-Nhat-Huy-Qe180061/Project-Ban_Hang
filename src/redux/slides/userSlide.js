@@ -12,7 +12,10 @@ export const userSlice = createSlice({
   reducers: {
     updateUser: (state, action) => {
       console.log("state:", state);
-      const {name, email, access_token} = action.payload
+      const {name, email, access_token} = action.payload;
+      state.name = name || email;
+      state.email = email;
+      state.access_token = access_token;
       console.log('action', action);
     },
   },

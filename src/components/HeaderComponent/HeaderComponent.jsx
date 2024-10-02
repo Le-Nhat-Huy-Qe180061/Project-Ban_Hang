@@ -4,7 +4,7 @@ import {
     WrapperTextHeader,
     WrapperTextHeaderSmall,
 } from "./style";
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./HeaderComponent.scss";
 import { Badge, Col } from "antd";
 import {
@@ -13,6 +13,7 @@ import {
     ShoppingCartOutlined,
 } from "@ant-design/icons";
 import ButtonInputSearch from "../ButtonInputSearch/ButtonInputSearch";
+import { useSelector } from "react-redux";
 
 
 
@@ -23,9 +24,13 @@ const HeaderComponent = () => {
         navigate('/sign-in');
     }
 
+    const user = useSelector((state) => state.user);
+
+    console.log("user", user);
+
 
     return (
-        <div style={{width: '100%', background: 'rgb(26, 148, 255)', display:'flex', justifyContent:'center'}}>
+        <div style={{ width: '100%', background: 'rgb(26, 148, 255)', display: 'flex', justifyContent: 'center' }}>
             <WrapperHeader >
                 <Col span={5}>
                     <WrapperTextHeader>NhatHuyDev</WrapperTextHeader>
@@ -39,16 +44,20 @@ const HeaderComponent = () => {
                 </Col>
                 <Col span={6} className="header-right">
                     <WrapperHeaderAccout>
-                        <UserOutlined style={{ fontSize: "30px"}} />
-                        <div onClick={handleNavigateLogin} style={{cursor: 'pointer'}}>
-                            <WrapperTextHeaderSmall>
-                                Đăng nhập / Đăng ký
-                            </WrapperTextHeaderSmall>
-                            <div className="header-right__account">
-                                <WrapperTextHeaderSmall>Tài khoản</WrapperTextHeaderSmall>
-                                <CaretDownOutlined />
+                        <UserOutlined style={{ fontSize: "30px", cursor: 'pointer' }} />
+                        {user.name ? (
+                            <div>{user.name}</div>
+                        ) : (
+                            <div onClick={handleNavigateLogin} style={{ cursor: 'pointer' }}>
+                                <WrapperTextHeaderSmall>
+                                    Đăng nhập / Đăng ký
+                                </WrapperTextHeaderSmall>
+                                <div className="header-right__account">
+                                    <WrapperTextHeaderSmall>Tài khoản</WrapperTextHeaderSmall>
+                                    <CaretDownOutlined />
+                                </div>
                             </div>
-                        </div>
+                        )}
                     </WrapperHeaderAccout>
 
                     <div className="header-right__cart">
